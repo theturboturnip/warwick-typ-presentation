@@ -1,0 +1,35 @@
+% Porting multithreaded C to CUDA
+% problems are all embarassingly parallel
+% Red-black used (don't need to explain thoroughly
+% Already optimized for parallelism, move to CUDA was easy.
+% had to un-vectorize, as GPUs don't have vector registers
+
+% Unified memory?
+% CUDA can allocate "unified memory" 
+% Usable from CPU and GPU without having to manually transfer
+% Automatically pages from one side to the other
+% Great for initially creating the algorithm
+
+% CUDA-specific optimizations
+% const __restrict__ pointers
+% CUDA has special, fast memory for data that is guaranteed not to change.
+% All functions have separate inputs and outputs, so this memory would be very helpful
+% Use const to ensure the compiler knows it can't be written to, __restrict__ to tell the compiler that no other pointers point to the same data.
+% These guarantees allow the compiler to use the special memory TODO find the name
+% Shown in [] to have distinct benefits.
+
+% Implemented by using in_matrix<T>, out_matrix<T> for all arguments to kernels
+% C++ support in CUDA converts these to const __restrict__ pointers
+
+% Cuda Graphs
+% Profiling showed many pipeline bubbles between Poisson iterations
+% Issue is with dispatching kernels:
+%  dispatching is asynchrnous, but you can only dispatch so many things before you have to wait?
+%  or was the kernel executing faster than the CPU managed to dispatch them?
+% either way - had to wait for the CPU to dispatch the next kernel.
+% CUDA graphs[] allow you to record a set of actions, then enqueue them all at once.
+% This reduces CPU overhead of poisson to 0, removing utilization bubbles and halving the time taken. (other kernels were not added to the graph as future extensions were planned)
+
+% CUDA reductions
+% the simulation requires finding the maximum value in arrays
+% use a parallel reduction to do this on the GPU, and avoid transferring data to the CPU and back.

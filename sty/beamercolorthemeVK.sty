@@ -1,7 +1,7 @@
 \mode<presentation>
 
 \definecolor{VKblue}{RGB}{39,135,245}
-\definecolor{VKgrey}{RGB}{200,200,200}
+\definecolor{VKgrey}{RGB}{100,100,100}
 
 \setbeamercolor{palette primary}{bg=white,fg=VKblue}
 \setbeamercolor{palette secondary}{bg=white,fg=VKblue}
@@ -9,9 +9,11 @@
 \setbeamercolor{palette quaternary}{bg=white,fg=VKblue}
 \setbeamercolor{structure}{fg=VKblue} % itemize, enumerate, etc
 \setbeamercolor{section in toc}{fg=VKblue} % TOC sections
+% \setbeamercolor{section in toc shaded}{fg=VKgrey}
+\setbeamertemplate{section in toc shaded}[default][40]
 
 % Override palette coloring with secondary
-\setbeamercolor{subsection in head/foot}{bg=white,fg=VKblue}
+\setbeamercolor{subsection in head/foot}{bg=VKgrey,fg=VKblue}
 
 \setbeamercolor{footnote}{fg=VKgrey}
 \setbeamercolor{footnote mark}{fg=VKgrey}

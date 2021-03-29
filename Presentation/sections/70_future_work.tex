@@ -1,0 +1,46 @@
+\section{Conclusion \& Future Work}
+\begin{frame}{Conclusion}
+    % \todomark{Conclusion}
+    % 8.5Kloc over 164 files, not including external libraries, comments, or blanks.
+% 52 lines per file on avg?
+% For C/C++, 132/file on average
+% For headers, 30/file
+% For CUDA, 51/file (probs counts CUDA headers)
+% GLSL, 40/file.
+
+% \todomark{All goals acheived!}
+% \begin{center}
+%     All goals were achieved!
+% \end{center}
+% \vfill\null
+\begin{wideitemize}
+    \item Overall, the project was a success.
+    \item CUDA is a very intuitive API, especially for those without prior compute experience.
+    \item Vulkan requires more heavy lifting, but it seems to have been worth it.
+    \item Looking to the games industry for advice in i.e. particle rendering is helpful.
+    
+    \item For the scientific community to start using Vulkan, simple abstraction layers will be needed.
+    \begin{wideitemize}
+        \item VTK, a popular visualization library, has a Vulkan branch that seems to be dead.
+        \item Datoviz is a new library with Python bindings that renders with Vulkan.
+    \end{wideitemize}
+    
+    \item CUDA-Vulkan interoperability is nice! Resources should be allocated from Vulkan to maintain full control.
+\end{wideitemize}
+\end{frame}
+
+\begin{frame}{Future Work}
+    Simulation
+    \begin{wideitemize}
+        \item Investigate simulation accuracy and algorithm.
+        \item Re-introduce the Poisson accuracy check.
+        \item Optimize parallel reductions.
+    \end{wideitemize}
+    \vfill\null
+    Visualization
+    \begin{wideitemize}
+        \item Investigate colorblindness options.
+        \item Better memory allocation, potentially using a helper library.
+        \item Run different layer computations in parallel with separate command buffers?
+    \end{wideitemize}
+\end{frame}
